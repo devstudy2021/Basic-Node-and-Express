@@ -34,6 +34,11 @@ app.get("/json", (req, res) => {
         res.json({"message": item});
 });
 
+app.get("/:word/echo", (req, res) => {
+    let word = req.params.word;
+    res.json({echo: word});
+});
+
 
 
 
