@@ -8,7 +8,7 @@ app.get("/", (req, res) => {
 }); */
 
 app.get("/", (req, res) => {
-    res.send((__dirname + "/views/index.html"));
+    res.send(absolutePath =(__dirname + "/views/index.html"));
 });
 
 
