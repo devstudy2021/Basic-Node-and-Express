@@ -1,5 +1,6 @@
 let express = require('express');
 let app = express();
+let bodyParser = require(bodyParser);
 
 /* console.log('Hello World');
 
@@ -11,6 +12,8 @@ app.use((req, res, next) => {
     console.log(req.method+" "+req.path+" - "+req.ip);
     next();
 });
+
+app.use(bodyParser.urlencoded({extended: false}));
 
 app.get("/now", (req, res, next) => {
     req.time = new Date().toString();
