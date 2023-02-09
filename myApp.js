@@ -8,10 +8,6 @@ app.get("/", (req, res) => {
     res.send("Hello Express");
 }); */
 
-app.use(bodyParser.urlencoded({extended: false}));
-
-app.use(bodyParser.json());
-
 app.use((req, res, next) => {
     console.log(req.method+" "+req.path+" - "+req.ip);
     next();
@@ -44,11 +40,19 @@ app.get("/:word/echo", (req, res) => {
     res.json({echo: word});
 });
 
-app.get("/name", (req, res) => {
-    let first = req.query.first;
-    let last = req.query.last;
-    res.json({name: first+' '+last})
-});
+app.use(bodyParser.urlencoded({extended: false}));
+
+app.use(bodyParser.json());
+
+app.route("/name")
+    .get((req, res) => {
+        let first = req.query.first;
+        let last = req.query.last;
+        res.json({name: first+' '+last});
+    })
+    .post((req, res) => {
+        res.json(req.body.first+' '+req.body.last);
+    });
 
 
 
