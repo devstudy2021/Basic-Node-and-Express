@@ -8,12 +8,10 @@ app.get("/", (req, res) => {
     res.send("Hello Express");
 }); */
 
-app.use((req, res, next) => {
+app.use(bodyParser.urlencoded({extended: false}), (req, res, next) => {
     console.log(req.method+" "+req.path+" - "+req.ip);
     next();
 });
-
-app.use(bodyParser.urlencoded({extended: false}));
 
 app.get("/now", (req, res, next) => {
     req.time = new Date().toString();
