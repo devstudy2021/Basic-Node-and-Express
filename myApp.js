@@ -10,8 +10,6 @@ app.get("/", (req, res) => {
 
 app.use(bodyParser.urlencoded({extended: false}));
 
-app.use(bodyParser.json());
-
 app.use((req, res, next) => {
     console.log(req.method+" "+req.path+" - "+req.ip);
     next();
@@ -51,12 +49,17 @@ app.get("/name", (req, res) => {
 });
 
 app.post("/name", (req, res) => {
-        let first = req.body.first;
-        let last = req.body.last;
+        let first = req.query.first;
+        let last = req.query.last;
         res.json({name: first+' '+last});
 });
 
-
+app.post("/name", bodyParser.urlencoded({extended: false}), (req, res, next) => {
+    let first = req.body.first;
+    let last = req.body.last;
+    res.json({name: first+' '+last});
+    next();
+});
 
 
 
