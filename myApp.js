@@ -1,6 +1,6 @@
 let express = require('express');
 let app = express();
-let bodyParser = require(bodyParser);
+let bodyParser = require('body-parser');
 
 /* console.log('Hello World');
 
@@ -9,8 +9,6 @@ app.get("/", (req, res) => {
 }); */
 
 app.use(bodyParser.urlencoded({extended: false}));
-
-app.use(bodyParser.json());
 
 app.use((req, res, next) => {
     console.log(req.method+" "+req.path+" - "+req.ip);
@@ -45,8 +43,8 @@ app.get("/:word/echo", (req, res) => {
 });
 
 app.get("/name", (req, res) => {
-    let first = req.query.first;
-    let last = req.query.last;
+    let first = req.body.first;
+    let last = req.body.last;
     res.json({name: first+' '+last})
 });
 
