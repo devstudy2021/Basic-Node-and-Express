@@ -54,10 +54,9 @@ app.post("/name", (req, res) => {
         res.json({name: first+' '+last});
 });
 
-app.post("/name", bodyParser.urlencoded({extended: false}), (req, res, next) => {
-    let first = req.body.first;
-    let last = req.body.last;
-    res.json({name: first+' '+last});
+app.post("/name", (req, res) => {
+    let name = req.body.first + ' ' + req.body.last;
+    res.json({name: name});
     next();
 });
 
